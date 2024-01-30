@@ -1,0 +1,15 @@
+name: Testing # El nombre del workflow
+on: push # Que sea corrido cada vez que alguien haga un push
+
+# Las acciones que se van a ejecutar al pushear
+jobs:
+  test_project:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2 # Ésta es escrita por github,. lo que nos va a permitir poder correr cosas en Github
+    - name: Run Django unit tests
+      run: | # Acá se van a correr los comandos que nosotros definamos
+        pip3 install --user django
+        python3 manage.py test
+
+# En resumen, cada vez que se pushee, el código será corrido en una VM de ubuntu dentro de Github
