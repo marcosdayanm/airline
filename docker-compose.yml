@@ -1,0 +1,18 @@
+# DOcker compose sirve para especificar todos los servicios que quiero que sean parte de mi web app
+# Donde cada servicio es un contenedor que puede tener unq Docker Image diferente
+
+# La versión de Docker Compose
+version: '3'
+
+
+# Se enumeran los servicios
+services:
+  db:
+    image: postgres  # Imagen default de postgres que ya alguien más escribió
+  web: # El servicio de la web app
+    build: .   
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000" # Ésto hace que el puerto 8000 de mi compu pueda hablarle al puerto 8000 del container
+
